@@ -1,0 +1,126 @@
+---
+sidebar_position: 3
+sidebar_label: "📦 Categoría"
+title: "Tabla de categoría"
+description: "Documentación de tabla categoría."
+tags:
+  - finance personal
+  - table
+  - category
+---
+
+import Title from "@site/src/components/docs/finza/TitleTableFeature";
+import Field from "@site/src/components/docs/finza/FieldFeature";
+import Index from "@site/src/components/docs/finza/IndexFeature";
+import Relationship from "@site/src/components/docs/finza/RelationshipFeature";
+
+<Title nameTable="categories" />
+
+Lista de categorías para las operaciones de egresos.
+
+## 📄 Columnas
+
+<Field
+  field="id"
+  types="INT"
+  isUnique
+  isIncremental
+  isPrimaryKey
+  comments="Identificador único para el catálogo de categorías."
+/>
+
+<Field
+  field="usr_id"
+  types="INT"
+  isDefaultNull
+  isNull
+  comments="Identificador del usuario quien hizo la operación."
+/>
+
+<Field
+  field="code"
+  types="CHAR(10)"
+  isDefaultNull
+  isNull
+  comments="Código de la categoría."
+/>
+
+<Field
+  field="name"
+  types="VARCHAR(255)"
+  isDefaultNull
+  isNull
+  comments="Descripción de la categoría."
+/>
+
+<Field
+  field="icon"
+  types="VARCHAR(15)"
+  isDefaultNull
+  isNull
+  comments="Icono de la categoría."
+/>
+
+<Field
+  field="observation"
+  types="TEXT"
+  isNull
+  isDefaultNull
+  comments="Observaciones del categoría, opcional."
+/>
+
+<Field
+  field="file"
+  types="VARCHAR(120)"
+  isNull
+  isDefaultNull
+  comments="Captura del nombre del archivo, opcional."
+/>
+
+<Field
+  field="status"
+  types="CHAR(20)"
+  defaultValue="Activo"
+  comments="Estatus actual de la categoría [Activo || Inactivo]."
+/>
+
+<Field
+  field="created_at"
+  types="TIMESTAMP"
+  isNull
+  defaultValue="NOW()"
+  comments="Datos de auditoria, Fecha de alta del registro."
+/>
+
+<Field
+  field="updated_at"
+  types="TIMESTAMP"
+  isNull
+  defaultValue="NOW()"
+  comments="Datos de auditoria, Fecha de actualización del registro."
+/>
+
+<Field
+  field="deleted_at"
+  types="TIMESTAMP"
+  isNull
+  isDefaultNull
+  comments="Datos de auditoria, Fecha de baja del registro."
+/>
+
+## 📑 Indexes
+
+<Index indexName="pkClassification" isPrimaryKey field="id" />
+
+<Index indexName="ukClassification" isUnique field="name" />
+
+## 🚏 Relaciones
+
+<Relationship
+  table="users"
+  cardinality="➡1:N➡"
+  foreign="categories"
+  constraint="fkCategoryUser"
+  relationship="1:N"
+  field_id="id"
+/>

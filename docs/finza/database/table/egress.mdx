@@ -1,0 +1,171 @@
+---
+sidebar_position: 10
+sidebar_label: '📦 Egresos'
+title: 'Tabla de egresos'
+description: 'Documentación de tabla egresos.'
+tags:
+    - finance personal
+    - table
+    - ingress
+---
+
+import Title from '@site/src/components/docs/finza/TitleTableFeature'
+import Field from "@site/src/components/docs/finza/FieldFeature";
+import Index from "@site/src/components/docs/finza/IndexFeature";
+import Relationship from "@site/src/components/docs/finza/RelationshipFeature";
+
+<Title nameTable = 'egresses'/>
+
+Registro de operaciones de tipo egreso.
+
+## 📄 Columnas
+
+<Field
+    field="id"
+    types="INT"
+    isUnique
+    isIncremental
+    isPrimaryKey
+    comments="Identificador único para las operaciones de egresos." />
+
+<Field
+    field="usr_id"
+    types="INT"
+    isDefaultNull
+    isNull
+    comments="Identificador del usuario quien hizo la operación." />
+
+<Field
+    field="cls_id"
+    types="INT"
+    isDefaultNull
+    isNull
+    comments="Identificador de la clasificación." />
+
+<Field
+    field="sav_id"
+    types="INT"
+    isDefaultNull
+    isNull
+    comments="Identificador del ahorro." />
+
+<Field
+    field="deb_id"
+    types="INT"
+    isDefaultNull
+    isNull
+    comments="Identificador de la deuda." />
+
+<Field
+    field="concept"
+    types="VARCHAR(255)"
+    isDefaultNull
+    isNull
+    comments="Nombre del concepto." />
+
+<Field
+    field="reference"
+    types="VARCHAR(255)"
+    isDefaultNull
+    isNull
+    comments="Referencia de tipo egreso." />
+
+<Field
+    field="amount"
+    types="DOUBLE"
+    isDefaultNull
+    isNull
+    comments="Importe total del tipo egreso." />
+
+<Field
+    field="observation"
+    types="TEXT"
+    isNull
+    isDefaultNull
+    comments="Observaciones del egreso, opcional." />
+
+<Field
+    field="file"
+    types="VARCHAR(120)"
+    isNull
+    isDefaultNull
+    comments="Captura del nombre del archivo, opcional." />
+
+<Field
+    field="status"
+    types="CHAR(20)"
+    defaultValue="Activo"
+    comments="Estatus actual del egreso [Activo || Inactivo]." />
+
+<Field
+    field="created_at"
+    types="TIMESTAMP"
+    isNull
+    defaultValue="NOW()"
+    comments="Datos de auditoria, Fecha de alta del registro." />
+
+<Field
+    field="updated_at"
+    types="TIMESTAMP"
+    isNull
+    defaultValue="NOW()"
+    comments="Datos de auditoria, Fecha de actualización del registro." />
+
+<Field
+    field="deleted_at"
+    types="TIMESTAMP"
+    isNull
+    isDefaultNull
+    comments="Datos de auditoria, Fecha de baja del registro." />
+
+
+## 📑 Indexes
+
+<Index indexName="pkEgress" isPrimaryKey field="id" />
+
+## 🚏 Relaciones
+
+<Relationship
+  table="users"
+  cardinality="➡1:N➡"
+  foreign="egresses"
+  constraint="fkEgressUser"
+  relationship="1:N"
+  field_id="id"
+/>
+
+<Relationship
+  table="egresses"
+  cardinality="➡1:N➡"
+  foreign="classifications"
+  constraint="fkEgressClassification"
+  relationship="1:N"
+  field_id="id"
+/>
+
+<Relationship
+  table="egresses"
+  cardinality="➡1:N➡"
+  foreign="savings"
+  constraint="fkEgressSaving"
+  relationship="1:N"
+  field_id="id"
+/>
+
+<Relationship
+  table="egresses"
+  cardinality="➡1:N➡"
+  foreign="debts"
+  constraint="fkEgressDebt"
+  relationship="1:N"
+  field_id="id"
+/>
+
+<Relationship
+  table="egresses"
+  cardinality="➡1:N➡"
+  foreign="accounts"
+  constraint="fkEgressAccount"
+  relationship="1:N"
+  field_id="id"
+/>

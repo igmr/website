@@ -1,0 +1,125 @@
+---
+sidebar_position: 5
+sidebar_label: "📦 Ahorro"
+title: "Tabla de ahorro"
+description: "Documentación de tabla Ahorro."
+tags:
+  - finance personal
+  - table
+  - savings
+---
+
+import Title from "@site/src/components/docs/finza/TitleTableFeature";
+import Field from "@site/src/components/docs/finza/FieldFeature";
+import Index from "@site/src/components/docs/finza/IndexFeature";
+import Relationship from "@site/src/components/docs/finza/RelationshipFeature";
+
+<Title nameTable="savings" />
+
+Administración de operaciones de tipo ahorro.
+
+## 📄 Columnas
+
+<Field
+  field="id"
+  types="INT"
+  isUnique
+  isIncremental
+  isPrimaryKey
+  comments="Identificador único para la administración de ahorro."
+/>
+
+<Field
+  field="usr_id"
+  types="INT"
+  isDefaultNull
+  isNull
+  comments="Identificador del usuario quien hizo la operación."
+/>
+
+<Field
+  field="name"
+  types="VARCHAR(65)"
+  isUnique
+  comments="Nombre de la cuenta de ahorro."
+/>
+
+<Field
+  field="amount"
+  types="DOUBLE"
+  defaultValue='0'
+  isNull
+  comments="Importe total del ahorro."
+/>
+
+<Field
+  field="date_finish"
+  types="DATETIME"
+  isDefaultNull
+  isNull
+  comments="Fecha de finalización de ahorro."
+/>
+
+<Field
+  field="observation"
+  types="TEXT"
+  isNull
+  isDefaultNull
+  comments="Observaciones de la clasificación, opcional."
+/>
+
+<Field
+  field="file"
+  types="VARCHAR(120)"
+  isNull
+  isDefaultNull
+  comments="Captura del nombre del archivo, opcional."
+/>
+
+<Field
+  field="status"
+  types="CHAR(20)"
+  defaultValue="Activo"
+  comments="Estatus actual del ahorro [Activo || Inactivo]."
+/>
+
+<Field
+  field="created_at"
+  types="TIMESTAMP"
+  isNull
+  defaultValue="NOW()"
+  comments="Datos de auditoria, Fecha de alta del registro."
+/>
+
+<Field
+  field="updated_at"
+  types="TIMESTAMP"
+  isNull
+  defaultValue="NOW()"
+  comments="Datos de auditoria, Fecha de actualización del registro."
+/>
+
+<Field
+  field="deleted_at"
+  types="TIMESTAMP"
+  isNull
+  isDefaultNull
+  comments="Datos de auditoria, Fecha de baja del registro."
+/>
+
+## 📑 Indexes
+
+<Index indexName="pkSaving" isPrimaryKey field="id" />
+
+<Index indexName="ukSaving" isUnique field="name" />
+
+## 🚏 Relaciones
+
+<Relationship
+  table="users"
+  cardinality="➡1:N➡"
+  foreign="savings"
+  constraint="fkSavingUser"
+  relationship="1:N"
+  field_id="id"
+/>

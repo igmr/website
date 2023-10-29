@@ -1,0 +1,108 @@
+---
+sidebar_position: 2
+sidebar_label: '📦 Banco'
+title: 'Tabla de bancos'
+description: 'Documentación de tabla de banco.'
+tags:
+    - finance personal
+    - table
+    - bank
+---
+
+import Title from '@site/src/components/docs/finza/TitleTableFeature'
+import Field from "@site/src/components/docs/finza/FieldFeature";
+import Index from "@site/src/components/docs/finza/IndexFeature";
+import Relationship from "@site/src/components/docs/finza/RelationshipFeature";
+
+<Title nameTable = 'banks'/>
+
+Catálogo de banco para la administración de ingresos y egresos.
+
+## 📄 Columnas
+
+<Field
+    field="id"
+    types="INT"
+    isUnique
+    isIncremental
+    isPrimaryKey
+    comments="Identificador único para el catálogo de bancos." />
+
+<Field
+    field="usr_id"
+    types="INT"
+    isDefaultNull
+    isNull
+    comments="Identificador del usuario quien hizo la operación." />
+
+<Field
+    field="abbreviature"
+    types="CHAR(25)"
+    isDefaultNull
+    isNull
+    comments="Abreviación de banco." />
+
+<Field
+    field="name"
+    types="VARCHAR(65)"
+    isUnique
+    comments="Nombre de banco." />
+
+<Field
+    field="observation"
+    types="TEXT"
+    isNull
+    isDefaultNull
+    comments="Observaciones del banco, opcional." />
+
+<Field
+    field="file"
+    types="VARCHAR(120)"
+    isNull
+    isDefaultNull
+    comments="Captura del nombre del archivo, opcional." />
+
+<Field
+    field="status"
+    types="CHAR(20)"
+    defaultValue="Activo"
+    comments="Estatus actual del banco [Activo || Inactivo]." />
+
+<Field
+    field="created_at"
+    types="TIMESTAMP"
+    isNull
+    defaultValue="NOW()"
+    comments="Datos de auditoria, Fecha de alta del registro." />
+
+<Field
+    field="updated_at"
+    types="TIMESTAMP"
+    isNull
+    defaultValue="NOW()"
+    comments="Datos de auditoria, Fecha de actualización del registro." />
+
+<Field
+    field="deleted_at"
+    types="TIMESTAMP"
+    isNull
+    isDefaultNull
+    comments="Datos de auditoria, Fecha de baja del registro." />
+
+
+## 📑 Indexes
+
+<Index indexName="pkBank" isPrimaryKey field="id" />
+
+<Index indexName="ukBank" isUnique field="name" />
+
+## 🚏 Relaciones
+
+<Relationship
+  table="users"
+  cardinality="➡1:N➡"
+  foreign="banks"
+  constraint="fkBankUser"
+  relationship="1:N"
+  field_id="id"
+/>

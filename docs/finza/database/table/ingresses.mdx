@@ -1,0 +1,171 @@
+---
+sidebar_position: 9
+sidebar_label: '📦 Ingresos'
+title: 'Tabla de ingresos'
+description: 'Documentación de tabla ingresos.'
+tags:
+    - finance personal
+    - table
+    - ingress
+---
+
+import Title from '@site/src/components/docs/finza/TitleTableFeature'
+import Field from "@site/src/components/docs/finza/FieldFeature";
+import Index from "@site/src/components/docs/finza/IndexFeature";
+import Relationship from "@site/src/components/docs/finza/RelationshipFeature";
+
+<Title nameTable = 'ingresses'/>
+
+Registro de operaciones de tipo de ingresos.
+
+## 📄 Columnas
+
+<Field
+    field="id"
+    types="INT"
+    isUnique
+    isIncremental
+    isPrimaryKey
+    comments="Identificador único para las operaciones de ingresos." />
+
+<Field
+    field="usr_id"
+    types="INT"
+    isDefaultNull
+    isNull
+    comments="Identificador del usuario quien hizo la operación." />
+
+<Field
+    field="cat_id"
+    types="INT"
+    isDefaultNull
+    isNull
+    comments="Identificador de la categoría." />
+
+<Field
+    field="sav_id"
+    types="INT"
+    isDefaultNull
+    isNull
+    comments="Identificador del ahorro." />
+
+<Field
+    field="deb_id"
+    types="INT"
+    isDefaultNull
+    isNull
+    comments="Identificador de la deuda." />
+
+<Field
+    field="concept"
+    types="VARCHAR(255)"
+    isDefaultNull
+    isNull
+    comments="Nombre del concepto." />
+
+<Field
+    field="reference"
+    types="VARCHAR(255)"
+    isDefaultNull
+    isNull
+    comments="Referencia de tipo de ingreso." />
+
+<Field
+    field="amount"
+    types="DOUBLE"
+    isDefaultNull
+    isNull
+    comments="Importe total del tipo ingreso." />
+
+<Field
+    field="observation"
+    types="TEXT"
+    isNull
+    isDefaultNull
+    comments="Observaciones del tipo ingreso, opcional." />
+
+<Field
+    field="file"
+    types="VARCHAR(120)"
+    isNull
+    isDefaultNull
+    comments="Captura del nombre del archivo, opcional." />
+
+<Field
+    field="status"
+    types="CHAR(20)"
+    defaultValue="Activo"
+    comments="Estatus actual del ingreso [Activo || Inactivo]." />
+
+<Field
+    field="created_at"
+    types="TIMESTAMP"
+    isNull
+    defaultValue="NOW()"
+    comments="Datos de auditoria, Fecha de alta del registro." />
+
+<Field
+    field="updated_at"
+    types="TIMESTAMP"
+    isNull
+    defaultValue="NOW()"
+    comments="Datos de auditoria, Fecha de actualización del registro." />
+
+<Field
+    field="deleted_at"
+    types="TIMESTAMP"
+    isNull
+    isDefaultNull
+    comments="Datos de auditoria, Fecha de baja del registro." />
+
+
+## 📑 Indexes
+
+<Index indexName="pkIngress" isPrimaryKey field="id" />
+
+## 🚏 Relaciones
+
+<Relationship
+  table="users"
+  cardinality="➡1:N➡"
+  foreign="ingresses"
+  constraint="fkIngressUser"
+  relationship="1:N"
+  field_id="id"
+/>
+
+<Relationship
+  table="ingresses"
+  cardinality="➡1:N➡"
+  foreign="categories"
+  constraint="fkIngressCategory"
+  relationship="1:N"
+  field_id="id"
+/>
+
+<Relationship
+  table="ingresses"
+  cardinality="➡1:N➡"
+  foreign="savings"
+  constraint="fkIngressSaving"
+  relationship="1:N"
+  field_id="id"
+/>
+
+<Relationship
+  table="ingresses"
+  cardinality="➡1:N➡"
+  foreign="debts"
+  constraint="fkIngressDebt"
+  relationship="1:N"
+  field_id="id"
+/>
+
+<Relationship
+  table="ingresses"
+  cardinality="➡1:N➡"
+  foreign="accounts"
+  constraint="fkIngressAccount"
+  relationship="1:N"
+  field_id="id"
+/>

@@ -1,0 +1,143 @@
+---
+sidebar_position: 11
+sidebar_label: "📦 Transacción"
+title: "Tabla de transacción"
+description: "Documentación de tabla transacciones."
+tags:
+  - finance personal
+  - table
+  - transactions
+---
+
+import Title from "@site/src/components/docs/finza/TitleTableFeature";
+import Field from "@site/src/components/docs/finza/FieldFeature";
+import Index from "@site/src/components/docs/finza/IndexFeature";
+import Relationship from "@site/src/components/docs/finza/RelationshipFeature";
+
+<Title nameTable="ingresses" />
+
+Registro de operaciones de tipo de ingresos.
+
+## 📄 Columnas
+
+<Field
+  field="id"
+  types="INT"
+  isUnique
+  isIncremental
+  isPrimaryKey
+  comments="Identificador único para la transacción."
+/>
+
+<Field
+  field="usr_id"
+  types="INT"
+  isDefaultNull
+  isNull
+  comments="Identificador del usuario quien hizo la operación."
+/>
+
+<Field
+  field="cat_id"
+  types="INT"
+  isDefaultNull
+  isNull
+  comments="Identificador de la categoría."
+/>
+
+<Field
+  field="acc_id_from"
+  types="INT"
+  isDefaultNull
+  isNull
+  comments="Identificador de la cuenta origen."
+/>
+
+<Field
+  field="acc_id_to"
+  types="INT"
+  isDefaultNull
+  isNull
+  comments="Identificador de la cuenta destino."
+/>
+
+<Field
+  field="sav_id"
+  types="INT"
+  isDefaultNull
+  isNull
+  comments="Identificador del ahorro."
+/>
+
+<Field
+  field="deb_id"
+  types="INT"
+  isDefaultNull
+  isNull
+  comments="Identificador de la deuda."
+/>
+
+<Field
+  field="amount"
+  types="DOUBLE"
+  isDefaultNull
+  isNull
+  comments="Importe total de la transacción."
+/>
+
+<Field
+  field="type"
+  types="CHAR(25)"
+  isDefaultNull
+  isNull
+  comments="Tipo de transacción: [ingreso | egreso]."
+/>
+
+<Field
+  field="observation"
+  types="TEXT"
+  isNull
+  isDefaultNull
+  comments="Observaciones del tipo ingreso, opcional."
+/>
+
+<Field
+  field="status"
+  types="CHAR(20)"
+  defaultValue="Activo"
+  comments="Estatus actual del ingreso [Activo || Inactivo]."
+/>
+
+<Field
+  field="created_at"
+  types="TIMESTAMP"
+  isNull
+  defaultValue="NOW()"
+  comments="Datos de auditoria, Fecha de alta del registro."
+/>
+
+<Field
+  field="updated_at"
+  types="TIMESTAMP"
+  isNull
+  defaultValue="NOW()"
+  comments="Datos de auditoria, Fecha de actualización del registro."
+/>
+
+<Field
+  field="deleted_at"
+  types="TIMESTAMP"
+  isNull
+  isDefaultNull
+  comments="Datos de auditoria, Fecha de baja del registro."
+/>
+
+## 📑 Indexes
+
+<Index indexName="pkTransaction" isPrimaryKey field="id" />
+
+## 🚏 Relaciones
+
+<SpanRed>
+  <em>No aplica</em>
+</SpanRed>

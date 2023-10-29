@@ -1,0 +1,142 @@
+---
+sidebar_position: 8
+sidebar_label: "📦 Presupuesto"
+title: "Tabla de presupuesto"
+description: "Documentación de la tabla presupuesto."
+tags:
+  - finance personal
+  - table
+  - budget
+---
+
+import Title from "@site/src/components/docs/finza/TitleTableFeature";
+import Field from "@site/src/components/docs/finza/FieldFeature";
+import Index from "@site/src/components/docs/finza/IndexFeature";
+import Relationship from "@site/src/components/docs/finza/RelationshipFeature";
+
+<Title nameTable="budgets" />
+
+Lista de operaciones de tipo presupuesto.
+
+## 📄 Columnas
+
+<Field
+  field="id"
+  types="INT"
+  isUnique
+  isIncremental
+  isPrimaryKey
+  comments="Identificador único para la administración de presupuesto."
+/>
+
+<Field
+  field="usr_id"
+  types="INT"
+  isDefaultNull
+  isNull
+  comments="Identificador del usuario quien hizo la operación."
+/>
+
+<Field
+  field="cat_id"
+  types="INT"
+  isDefaultNull
+  isNull
+  comments="Identificador para la clasificación del presupuesto por categoría (Opcional)."
+/>
+
+<Field
+  field="name"
+  types="VARCHAR(65)"
+  isUnique
+  comments="Nombre del presupuesto."
+/>
+
+<Field
+  field="amount"
+  types="DOUBLE"
+  defaultValue='0'
+  isNull
+  comments="Importe total del presupuesto."
+/>
+
+<Field
+  field="period"
+  types="CHAR(15)"
+  isDefaultNull
+  isNull
+  comments="Identificar del tipo del presupuesto [Diario|Semanal|Quincenal|Mensual|Anual]."
+/>
+
+<Field
+  field="observation"
+  types="TEXT"
+  isNull
+  isDefaultNull
+  comments="Observaciones del presupuesto, opcional."
+/>
+
+<Field
+  field="file"
+  types="VARCHAR(120)"
+  isNull
+  isDefaultNull
+  comments="Captura del nombre del archivo, opcional."
+/>
+
+<Field
+  field="status"
+  types="CHAR(20)"
+  defaultValue="Activo"
+  comments="Estatus actual del presupuesto [Activo || Inactivo]."
+/>
+
+<Field
+  field="created_at"
+  types="TIMESTAMP"
+  isNull
+  defaultValue="NOW()"
+  comments="Datos de auditoria, Fecha de alta del registro."
+/>
+
+<Field
+  field="updated_at"
+  types="TIMESTAMP"
+  isNull
+  defaultValue="NOW()"
+  comments="Datos de auditoria, Fecha de actualización del registro."
+/>
+
+<Field
+  field="deleted_at"
+  types="TIMESTAMP"
+  isNull
+  isDefaultNull
+  comments="Datos de auditoria, Fecha de baja del registro."
+/>
+
+## 📑 Indexes
+
+<Index indexName="pkBudget" isPrimaryKey field="id" />
+
+<Index indexName="ukBudget" isUnique field="name" />
+
+## 🚏 Relaciones
+
+<Relationship
+  table="users"
+  cardinality="➡1:N➡"
+  foreign="budgets"
+  constraint="fkBudgetUser"
+  relationship="1:N"
+  field_id="id"
+/>
+
+<Relationship
+  table="budgets"
+  cardinality="➡1:N➡"
+  foreign="categories"
+  constraint="fkBudgetCategory"
+  relationship="1:N"
+  field_id="id"
+/>

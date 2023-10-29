@@ -1,0 +1,116 @@
+---
+sidebar_position: 7
+sidebar_label: '📦 Cuentas'
+title: 'Tabla de cuentas'
+description: 'Documentación de tabla de cuentas.'
+tags:
+    - finance personal
+    - table
+    - account
+---
+
+import Title from '@site/src/components/docs/finza/TitleTableFeature'
+import Field from "@site/src/components/docs/finza/FieldFeature";
+import Index from "@site/src/components/docs/finza/IndexFeature";
+import Relationship from "@site/src/components/docs/finza/RelationshipFeature";
+
+<Title nameTable = 'accounts'/>
+
+Lista de cuentas por cuenta bancaria.
+
+
+## 📄 Columnas
+
+<Field
+    field="id"
+    types="INT"
+    isUnique
+    isIncremental
+    isPrimaryKey
+    comments="Identificador único para la cuenta bancaria." />
+
+<Field
+    field="usr_id"
+    types="INT"
+    isDefaultNull
+    isNull
+    comments="Identificador del usuario quien hizo la operación." />
+
+<Field
+    field="ban_id"
+    types="INT"
+    isDefaultNull
+    isNull
+    comments="Identificador de la cuenta bancaria." />
+
+<Field
+    field="name"
+    types="VARCHAR(65)"
+    isUnique
+    comments="Nombre de la cuenta bancaria." />
+
+<Field
+    field="observation"
+    types="TEXT"
+    isNull
+    isDefaultNull
+    comments="Observaciones de la cuenta bancaria, opcional." />
+
+<Field
+    field="file"
+    types="VARCHAR(120)"
+    isNull
+    isDefaultNull
+    comments="Captura del nombre del archivo, opcional." />
+
+<Field
+    field="status"
+    types="CHAR(20)"
+    defaultValue="Activo"
+    comments="Estatus actual de la cuenta bancaria [Activo || Inactivo]." />
+
+<Field
+    field="created_at"
+    types="TIMESTAMP"
+    isNull
+    defaultValue="NOW()"
+    comments="Datos de auditoria, Fecha de alta del registro." />
+
+<Field
+    field="updated_at"
+    types="TIMESTAMP"
+    isNull
+    defaultValue="NOW()"
+    comments="Datos de auditoria, Fecha de actualización del registro." />
+
+<Field
+    field="deleted_at"
+    types="TIMESTAMP"
+    isNull
+    isDefaultNull
+    comments="Datos de auditoria, Fecha de baja del registro." />
+
+
+## 📑 Indexes
+
+<Index indexName="pkAccount" isPrimaryKey field="id" />
+
+## 🚏 Relaciones
+
+<Relationship
+  table="users"
+  cardinality="➡1:N➡"
+  foreign="accounts"
+  constraint="fkAccountUser"
+  relationship="1:N"
+  field_id="id"
+/>
+
+<Relationship
+  table="accounts"
+  cardinality="➡1:N➡"
+  foreign="banks"
+  constraint="fkAccountBank"
+  relationship="1:N"
+  field_id="id"
+/>

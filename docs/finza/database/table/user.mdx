@@ -1,0 +1,98 @@
+---
+sidebar_position: 1
+sidebar_label: '📦 Usuario'
+title: 'Tabla de usuario'
+description: 'Documentación de tabla de usuario.'
+tags:
+    - finance personal
+    - table
+    - user
+---
+
+import Title from '@site/src/components/docs/finza/TitleTableFeature'
+import Field from "@site/src/components/docs/finza/FieldFeature";
+import Index from "@site/src/components/docs/finza/IndexFeature";
+import SpanRed from "@site/src/components/html/SpanRed";
+
+<Title nameTable = 'users'/>
+
+Catálogo de usuarios con privilegios para el acceso al sistema.
+
+## 📄 Columnas
+
+<Field
+    field="id"
+    types="INT"
+    isUnique
+    isIncremental
+    isPrimaryKey
+    comments="Identificador único para la administración de los usuarios." />
+
+<Field
+    field="name"
+    types="VARCHAR(255)"
+    isDefaultNull
+    isNull
+    comments="Nombre propio del usuario." />
+
+<Field
+    field="email"
+    types="VARCHAR(255)"
+    isUnique
+    comments="Correo electrónico de del usuario para autenticación ante el sistema." />
+
+<Field
+    field="password"
+    types="VARCHAR(255)"
+    comments="Contraseña del usuario de uso para autenticación ante el sistema." />
+
+<Field
+    field="observation"
+    types="TEXT"
+    isNull
+    isDefaultNull
+    comments="Observaciones del usuario, opcional." />
+
+<Field
+    field="file"
+    types="VARCHAR(120)"
+    isNull
+    isDefaultNull
+    comments="Captura del nombre del archivo, opcional." />
+
+<Field
+    field="status"
+    types="CHAR(20)"
+    defaultValue="Activo"
+    comments="Estatus actual del usuario [Activo || Inactivo]." />
+
+<Field
+    field="created_at"
+    types="TIMESTAMP"
+    isNull
+    defaultValue="NOW()"
+    comments="Datos de auditoria, Fecha de alta del registro." />
+
+<Field
+    field="updated_at"
+    types="TIMESTAMP"
+    isNull
+    defaultValue="NOW()"
+    comments="Datos de auditoria, Fecha de actualización del registro." />
+
+<Field
+    field="deleted_at"
+    types="TIMESTAMP"
+    isNull
+    isDefaultNull
+    comments="Datos de auditoria, Fecha de baja del registro." />
+
+## 📑 Indexes
+
+<Index indexName="pkUser" isPrimaryKey field="id" />
+
+<Index indexName="ukUser" isUnique field="email" />
+
+## 🚏 Relaciones
+
+<SpanRed><em>No aplica</em></SpanRed>

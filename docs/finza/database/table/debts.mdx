@@ -1,0 +1,158 @@
+---
+sidebar_position: 6
+sidebar_label: "📦 Deuda"
+title: "Tabla de deuda"
+description: "Documentación de tabla deuda."
+tags:
+  - finance personal
+  - table
+  - debts
+---
+
+import Title from "@site/src/components/docs/finza/TitleTableFeature";
+import Field from "@site/src/components/docs/finza/FieldFeature";
+import Index from "@site/src/components/docs/finza/IndexFeature";
+import Relationship from "@site/src/components/docs/finza/RelationshipFeature";
+
+<Title nameTable="debts" />
+
+Lista de operaciones de tipo deuda.
+
+## 📄 Columnas
+
+<Field
+  field="id"
+  types="INT"
+  isUnique
+  isIncremental
+  isPrimaryKey
+  comments="Identificador único para la administración de deudas."
+/>
+
+<Field
+  field="usr_id"
+  types="INT"
+  isDefaultNull
+  isNull
+  comments="Identificador del usuario quien hizo la operación."
+/>
+
+<Field
+  field="cat_id"
+  types="INT"
+  isDefaultNull
+  isNull
+  comments="Identificador para la clasificación de la deuda por categoría (Opcional)."
+/>
+
+<Field
+  field="name"
+  types="VARCHAR(65)"
+  isUnique
+  comments="Nombre de la deuda."
+/>
+
+<Field
+  field="amount"
+  types="DOUBLE"
+  defaultValue='0'
+  isNull
+  comments="Importe total de la deuda."
+/>
+
+<Field
+  field="period"
+  types="CHAR(15)"
+  isDefaultNull
+  isNull
+  comments="Identificar del tipo de deuda [Diario|Semanal|Quincenal|Mensual|Anual]."
+/>
+
+<Field
+  field="day"
+  types="INT"
+  isDefaultNull
+  isNull
+  comments="Dia de pago de deuda para tipo de periodo Mensual."
+/>
+
+<Field
+  field="date_at"
+  types="DATETIME"
+  isDefaultNull
+  isNull
+  comments="Fecha de pago de deuda para tipo de periodo Anual."
+/>
+
+<Field
+  field="observation"
+  types="TEXT"
+  isNull
+  isDefaultNull
+  comments="Observaciones de la clasificación, opcional."
+/>
+
+<Field
+  field="file"
+  types="VARCHAR(120)"
+  isNull
+  isDefaultNull
+  comments="Captura del nombre del archivo, opcional."
+/>
+
+<Field
+  field="status"
+  types="CHAR(20)"
+  defaultValue="Activo"
+  comments="Estatus actual de la clasificación [Activo || Inactivo]."
+/>
+
+<Field
+  field="created_at"
+  types="TIMESTAMP"
+  isNull
+  defaultValue="NOW()"
+  comments="Datos de auditoria, Fecha de alta del registro."
+/>
+
+<Field
+  field="updated_at"
+  types="TIMESTAMP"
+  isNull
+  defaultValue="NOW()"
+  comments="Datos de auditoria, Fecha de actualización del registro."
+/>
+
+<Field
+  field="deleted_at"
+  types="TIMESTAMP"
+  isNull
+  isDefaultNull
+  comments="Datos de auditoria, Fecha de baja del registro."
+/>
+
+## 📑 Indexes
+
+<Index indexName="pkDebt" isPrimaryKey field="id" />
+
+<Index indexName="ukDebt" isUnique field="name" />
+
+## 🚏 Relaciones
+
+<Relationship
+  table="users"
+  cardinality="➡1:N➡"
+  foreign="debts"
+  constraint="fkDebtUser"
+  relationship="1:N"
+  field_id="id"
+/>
+
+<Relationship
+  table="debts"
+  cardinality="➡1:N➡"
+  foreign="categories"
+  constraint="fkDebtCategory"
+  relationship="1:N"
+  field_id="id"
+/>
