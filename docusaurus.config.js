@@ -71,7 +71,7 @@ const config = {
       },
       footer: {
         style: "dark",
-        copyright: `Copyright © ${new Date().getFullYear()} Página web. Construido con Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Iván Gabino`,
       },
       prism: {
         theme: lightCodeTheme,
