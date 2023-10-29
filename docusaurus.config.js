@@ -6,15 +6,15 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
-  url: "https://your-docusaurus-test-site.com",
+  title: "Ivan Martinez",
+  tagline: "Website builded with docusaurus",
+  url: "https://ivangabino.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
-  organizationName: "facebook", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  favicon: "img/_favicon.ico",
+  organizationName: "igmr", // Usually your GitHub org/user name.
+  projectName: "website", // Usually your repo name.
 
   presets: [
     [
@@ -44,22 +44,26 @@ const config = {
     /** @type {import('docusaurus-preset-openapi').ThemeConfig} */
     ({
       navbar: {
-        title: "My Site",
+        title: "{ dev }",
         logo: {
-          alt: "My Site Logo",
-          src: "img/logo.svg",
+          alt: "avatar",
+          src: "img/avatar.svg",
         },
         items: [
           {
-            type: "doc",
-            docId: "intro",
+            type: "dropdown",
+            label: "Proyectos",
             position: "left",
-            label: "Tutorial",
+            items: [
+              {
+                type: "docSidebar",
+                label: "Finanzas personales",
+                sidebarId: "docFinanceSidebar",
+              }
+            ],
           },
-          { to: "/api", label: "API", position: "left" },
-          { to: "/blog", label: "Blog", position: "left" },
           {
-            href: "https://github.com/facebook/docusaurus",
+            href: "https://github.com/igmr/website",
             label: "GitHub",
             position: "right",
           },
@@ -67,48 +71,7 @@ const config = {
       },
       footer: {
         style: "dark",
-        links: [
-          {
-            title: "Docs",
-            items: [
-              {
-                label: "Tutorial",
-                to: "/docs/intro",
-              },
-            ],
-          },
-          {
-            title: "Community",
-            items: [
-              {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
-              },
-              {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
-              },
-              {
-                label: "Twitter",
-                href: "https://twitter.com/docusaurus",
-              },
-            ],
-          },
-          {
-            title: "More",
-            items: [
-              {
-                label: "Blog",
-                to: "/blog",
-              },
-              {
-                label: "GitHub",
-                href: "https://github.com/facebook/docusaurus",
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Página web. Construido con Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
